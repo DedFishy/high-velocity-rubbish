@@ -22,6 +22,8 @@ config/icon="uid://mp2ed4iw11vd"
 [display]
 
 window/size/resizable=false
+window/stretch/mode="canvas_items"
+window/stretch/aspect="ignore"
 
 [editor]
 

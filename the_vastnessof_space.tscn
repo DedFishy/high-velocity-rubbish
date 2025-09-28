@@ -4,10 +4,10 @@
 [ext_resource type="Script" uid="uid://cilp4s2t4u4es" path="res://ShipOMatic.gd" id="1_bn5yq"]
 [ext_resource type="PackedScene" uid="uid://bk752np5631ft" path="res://Models/shipglass.fbx" id="1_uri0b"]
 [ext_resource type="PackedScene" uid="uid://mul0dycrn1yn" path="res://Models/beautifulship.fbx" id="2_31cu2"]
-[ext_resource type="Texture2D" uid="uid://daf3g3osh8k3n" path="res://Textures/BigStupidSkybox.hdr" id="4_1c372"]
 [ext_resource type="Shader" uid="uid://tiuk577ugpku" path="res://TheSun.gdshader" id="5_hcob8"]
 [ext_resource type="AudioStream" uid="uid://bbk14hjo32rkw" path="res://Conspiracy Theory - Rod Kim.mp3" id="5_k5ju0"]
 [ext_resource type="PackedScene" uid="uid://ctnw168lqxms3" path="res://RandomProps/CityEnvPack1/AC_Unit_OutDoor/AC_Unit_Outdoor.fbx" id="6_18gw8"]
+[ext_resource type="Texture2D" uid="uid://c284lc5vc2b40" path="res://Textures/BigStupidSkybox.png" id="7_hcob8"]
 [ext_resource type="PackedScene" uid="uid://brkqb7msqbjod" path="res://RandomProps/CityEnvPack1/CityMailBox/CityMailBox.fbx" id="7_x1mnn"]
 [ext_resource type="PackedScene" uid="uid://d1xxcyl6payha" path="res://RandomProps/CityEnvPack1/ConcreteRoadblock/RoadBlock.fbx" id="8_l6bcn"]
 [ext_resource type="PackedScene" uid="uid://cdh2wwlcd27yj" path="res://RandomProps/CityEnvPack1/Dumpster/Dumpster.fbx" id="9_hw4o8"]
@@ -65,8 +65,8 @@ radial_segments = 16
 radius = 0.6058993
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ve50u"]
-panorama = ExtResource("4_1c372")
-energy_multiplier = 48.82
+panorama = ExtResource("7_hcob8")
+energy_multiplier = 11.07
 
 [sub_resource type="Sky" id="Sky_dhwq4"]
 sky_material = SubResource("PanoramaSkyMaterial_ve50u")
