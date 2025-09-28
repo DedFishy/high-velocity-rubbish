@@ -17,6 +17,9 @@ const bomb_max_difference = 40
 
 const prop_gravitron_multiplier = 200
 
+const bomb_gravitron_multiplier = 150
+
+
 const prop_initial_linear_velocity_range = 2
 const prop_initial_rotational_velocity_range = 10
 
@@ -33,8 +36,13 @@ func _physics_process(delta: float) -> void:
 	for prop in freefloating_props:
 		var vector_towards_ship = $Ship/ShipModel.global_position - prop.position
 		prop.linear_velocity += vector_towards_ship.normalized() * 1/(vector_towards_ship.length()) * delta * prop_gravitron_multiplier
+		
+	for prop in nuclear_bombs:
+		var vector_towards_ship = $Ship/ShipModel.global_position - prop.position
+		prop.linear_velocity += vector_towards_ship.normalized() * 1/(vector_towards_ship.length()) * delta * bomb_gravitron_multiplier
 
 func spawn_stuff():
+	if not $Ship.ingame: return
 	for _i in range(0, the_amount_of_stuff_spawned_each_time_stuff_is_spawned):
 		spawn_new_prop(
 			$Ship.position,
@@ -70,7 +78,10 @@ func spawn_new_prop(anchor_position: Vector3, minimum_offset: float, maximum_off
 	var new_prop = (get_random_prop() if prop == null else prop).duplicate(DuplicateFlags.DUPLICATE_GROUPS)
 	new_prop.show()
 	add_child(new_prop)
-	freefloating_props.append(new_prop)
+	if prop == null:
+		freefloating_props.append(new_prop)
+	else:
+		nuclear_bombs.append(new_prop)
 	new_prop.position = Vector3.ZERO;
 	new_prop.rotation_degrees = Vector3(randi_range(0, 360),randi_range(0, 360),randi_range(0, 360))
 	new_prop.linear_velocity = Vector3(
@@ -88,6 +99,8 @@ func get_random_prop() -> Node3D:
 	return children[randi_range(0, children.size()-1)]
 	
 func assimilate_prop(prop: RigidBody3D):
+	
+	$Ship/Collect.play()
 	caught_props.append(prop)
 	freefloating_props.remove_at(freefloating_props.find(prop))
 
@@ -98,6 +111,8 @@ func assimilate_prop(prop: RigidBody3D):
 
 func fire_prop():
 	if caught_props.size() == 0: return
+	$Ship/Fire.play()
+
 	var prop = caught_props[0]
 	caught_props.remove_at(0)
 	freefloating_props.append(prop)
@@ -106,7 +121,7 @@ func fire_prop():
 	prop.set_process(true)
 	prop.position = $Ship.global_position + prop_direction*4
 	print(prop_direction)
-	prop.linear_velocity = prop_direction * 100
+	prop.linear_velocity = prop_direction * 1000
 	
 	$Ship.apply_impulse(-prop_direction)
 	sync_rubbish_indicator()
@@ -123,6 +138,9 @@ func flashbang():
 	
 	for prop_list in [caught_props, freefloating_props, nuclear_bombs]:
 		for prop: Node3D in prop_list:
+			
+			prop.set_process(false)
+			prop.hide()
 			prop.queue_free()
 		prop_list.clear()
 

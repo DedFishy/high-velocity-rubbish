@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=4 uid="uid://cstutrvcj6g34"]
+[gd_scene load_steps=62 format=4 uid="uid://cstutrvcj6g34"]
 
 [ext_resource type="Script" uid="uid://bdlwp5qukf7ur" path="res://GameStateDictator.gd" id="1_1c372"]
 [ext_resource type="Script" uid="uid://cilp4s2t4u4es" path="res://ShipOMatic.gd" id="1_bn5yq"]
@@ -7,10 +7,13 @@
 [ext_resource type="Shader" uid="uid://tiuk577ugpku" path="res://TheSun.gdshader" id="5_hcob8"]
 [ext_resource type="AudioStream" uid="uid://bbk14hjo32rkw" path="res://Conspiracy Theory - Rod Kim.mp3" id="5_k5ju0"]
 [ext_resource type="PackedScene" uid="uid://ctnw168lqxms3" path="res://RandomProps/CityEnvPack1/AC_Unit_OutDoor/AC_Unit_Outdoor.fbx" id="6_18gw8"]
+[ext_resource type="AudioStream" uid="uid://7n1tdcra85m5" path="res://fireinthehole.mp3" id="7_cl8an"]
 [ext_resource type="Texture2D" uid="uid://c284lc5vc2b40" path="res://Textures/BigStupidSkybox.png" id="7_hcob8"]
 [ext_resource type="PackedScene" uid="uid://brkqb7msqbjod" path="res://RandomProps/CityEnvPack1/CityMailBox/CityMailBox.fbx" id="7_x1mnn"]
 [ext_resource type="PackedScene" uid="uid://d1xxcyl6payha" path="res://RandomProps/CityEnvPack1/ConcreteRoadblock/RoadBlock.fbx" id="8_l6bcn"]
+[ext_resource type="AudioStream" uid="uid://bm43u38h6awe4" path="res://collect.mp3" id="8_wf48b"]
 [ext_resource type="PackedScene" uid="uid://cdh2wwlcd27yj" path="res://RandomProps/CityEnvPack1/Dumpster/Dumpster.fbx" id="9_hw4o8"]
+[ext_resource type="AudioStream" uid="uid://djxd20dedxty" path="res://andrewtate.mp3" id="9_p4xrb"]
 [ext_resource type="PackedScene" uid="uid://bjr2ruk7kkxwa" path="res://RandomProps/CityEnvPack1/Payphone/Payphone.fbx" id="10_ugc2l"]
 [ext_resource type="PackedScene" uid="uid://db1j4wmkwwk6g" path="res://RandomProps/CityEnvPack1/Rooftop_Watertower/Rooftop_Watertower.fbx" id="11_qak4d"]
 [ext_resource type="PackedScene" uid="uid://cd7ludrnrf4jn" path="res://RandomProps/CityEnvPack1/StreetBench/StreetBench.fbx" id="12_tgiyb"]
@@ -24,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://brwgrmofh4m5d" path="res://RandomProps/Guns&Explosives/Nuclear_Bomb/Nuclear_Bomb_Metallic.png" id="20_k5ju0"]
 [ext_resource type="Texture2D" uid="uid://kbdoyoguul3i" path="res://RandomProps/Guns&Explosives/Nuclear_Bomb/Nuclear_Bomb_Normal_DirectX.png" id="21_hcob8"]
 [ext_resource type="Texture2D" uid="uid://d3imgke5parv2" path="res://RandomProps/Guns&Explosives/Nuclear_Bomb/Nuclear_Bomb_Roughness.png" id="22_3rjj2"]
+[ext_resource type="AudioStream" uid="uid://b25u742luam0b" path="res://bombstatic.mp3" id="28_wf48b"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_k5ju0"]
 size = Vector3(1, 1, 3.0101318)
@@ -66,7 +70,7 @@ radius = 0.6058993
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ve50u"]
 panorama = ExtResource("7_hcob8")
-energy_multiplier = 11.07
+energy_multiplier = 1.59
 
 [sub_resource type="Sky" id="Sky_dhwq4"]
 sky_material = SubResource("PanoramaSkyMaterial_ve50u")
@@ -183,6 +187,7 @@ metallic_texture = ExtResource("20_k5ju0")
 roughness_texture = ExtResource("22_3rjj2")
 emission_enabled = true
 emission = Color(0.28815925, 3.2488256e-07, 8.4228816e-08, 1)
+emission_energy_multiplier = 2.1
 normal_enabled = true
 normal_texture = ExtResource("21_hcob8")
 
@@ -196,6 +201,7 @@ axis_lock_angular_z = true
 gravity_scale = 0.0
 contact_monitor = true
 max_contacts_reported = 5
+linear_damp = 25.0
 angular_damp = 100.0
 script = ExtResource("1_bn5yq")
 
@@ -204,6 +210,7 @@ rotation_order = 0
 
 [node name="Camera3D" type="Camera3D" parent="Ship/CameraPivot"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, -3)
+doppler_tracking = 1
 
 [node name="Area3D" type="Area3D" parent="Ship/CameraPivot/Camera3D"]
 
@@ -231,9 +238,18 @@ shape = SubResource("SphereShape3D_18gw8")
 
 [node name="Assilimation" type="Node3D" parent="Ship"]
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Ship"]
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="Ship"]
 stream = ExtResource("5_k5ju0")
 autoplay = true
+
+[node name="Fire" type="AudioStreamPlayer" parent="Ship"]
+stream = ExtResource("7_cl8an")
+
+[node name="Collect" type="AudioStreamPlayer" parent="Ship"]
+stream = ExtResource("8_wf48b")
+
+[node name="AndrewTate" type="AudioStreamPlayer" parent="Ship"]
+stream = ExtResource("9_p4xrb")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_fwan2")
@@ -468,6 +484,26 @@ transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 1.977197e-06, 0.7860478)
 mesh = SubResource("ArrayMesh_6ae6f")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_cl8an")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="OtherProps/DaBomb/Nuclear_Bomb"]
+light_color = Color(1, 0, 0, 1)
+light_energy = 16.0
+light_indirect_energy = 16.0
+light_volumetric_fog_energy = 16.0
+light_size = 1.0
+light_specular = 16.0
+distance_fade_enabled = true
+distance_fade_begin = 0.0
+distance_fade_shadow = 960.22
+distance_fade_length = 4096.0
+omni_range = 35.01985
+
+[node name="Static" type="AudioStreamPlayer3D" parent="OtherProps/DaBomb"]
+stream = ExtResource("28_wf48b")
+volume_db = 10.0
+autoplay = true
+doppler_tracking = 1
+parameters/looping = true
 
 [connection signal="body_entered" from="Ship" to="Ship" method="_on_body_entered"]
 [connection signal="body_shape_entered" from="Ship" to="Ship" method="_on_body_shape_entered"]
