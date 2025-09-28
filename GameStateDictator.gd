@@ -121,7 +121,7 @@ func fire_prop():
 	prop.set_process(true)
 	prop.position = $Ship.global_position + prop_direction*4
 	print(prop_direction)
-	prop.linear_velocity = prop_direction * 1000
+	prop.linear_velocity = prop_direction * 100
 	
 	$Ship.apply_impulse(-prop_direction)
 	sync_rubbish_indicator()

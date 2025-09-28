@@ -472,6 +472,7 @@ visible = false
 
 [node name="DaBomb" type="RigidBody3D" parent="OtherProps"]
 visible = false
+collision_priority = 10.0
 gravity_scale = 0.0
 metadata/IsDaBomb = true
 
