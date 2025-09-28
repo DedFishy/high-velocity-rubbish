@@ -11,9 +11,17 @@ config_version=5
 [application]
 
 config/name="High Velocity Rubbish"
-run/main_scene="uid://cstutrvcj6g34"
+config/description="Collect trash, don't die
+Made for the Oshkosh Daydream game jam"
+run/main_scene="uid://df83niltm34ob"
 config/features=PackedStringArray("4.5", "GL Compatibility")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/show_image=false
+config/icon="uid://mp2ed4iw11vd"
+
+[display]
+
+window/size/resizable=false
 
 [editor]
 

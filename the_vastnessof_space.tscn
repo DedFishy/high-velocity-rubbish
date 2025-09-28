@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=4 uid="uid://cstutrvcj6g34"]
+[gd_scene load_steps=58 format=4 uid="uid://cstutrvcj6g34"]
 
 [ext_resource type="Script" uid="uid://bdlwp5qukf7ur" path="res://GameStateDictator.gd" id="1_1c372"]
 [ext_resource type="Script" uid="uid://cilp4s2t4u4es" path="res://ShipOMatic.gd" id="1_bn5yq"]
@@ -112,6 +112,10 @@ size = Vector3(0.6804199, 1.411499, 0.5255127)
 [sub_resource type="LabelSettings" id="LabelSettings_l6bcn"]
 font = ExtResource("15_x1mnn")
 font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_hcob8"]
+font = ExtResource("15_x1mnn")
+font_size = 32
 
 [sub_resource type="LabelSettings" id="LabelSettings_hw4o8"]
 font = ExtResource("15_x1mnn")
@@ -350,6 +354,14 @@ offset_bottom = 64.0
 text = "COLLECTED RUBBISH: 0"
 label_settings = SubResource("LabelSettings_l6bcn")
 
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 709.0
+offset_top = 615.0
+offset_right = 1181.0
+offset_bottom = 647.0
+text = "WASD - Rotate	  Space - Fire"
+label_settings = SubResource("LabelSettings_hcob8")
+
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 visible = false
 offset_right = 1154.0
@@ -393,6 +405,16 @@ text = "\"Free Base Mesh\" (https://skfb.ly/YZ9Z) by angelaxiotis is licensed un
 label_settings = SubResource("LabelSettings_ugc2l")
 autowrap_mode = 2
 
+[node name="Label3" type="Label" parent="CanvasLayer/ColorRect/RestartMenu/Label2"]
+layout_mode = 0
+offset_left = 6.5160093
+offset_top = -163.22543
+offset_right = 502.51608
+offset_bottom = -131.22543
+rotation = -0.033161256
+text = "Sorry pal, you were"
+label_settings = SubResource("LabelSettings_ugc2l")
+
 [node name="Button2" type="Button" parent="CanvasLayer/ColorRect/RestartMenu"]
 layout_mode = 0
 offset_left = 794.99994
@@ -414,6 +436,15 @@ rotation = -0.17802358
 theme = SubResource("Theme_tgiyb")
 text = "give it another go"
 script = ExtResource("17_tgiyb")
+
+[node name="Label3" type="Label" parent="CanvasLayer/ColorRect/RestartMenu"]
+layout_mode = 0
+offset_left = 326.0
+offset_top = 453.0
+offset_right = 822.0
+offset_bottom = 485.0
+text = "Thanks for playing! -Boyne"
+label_settings = SubResource("LabelSettings_ugc2l")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer/ColorRect"]
 stream = ExtResource("16_hw4o8")

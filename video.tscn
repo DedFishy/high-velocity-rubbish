@@ -1,9 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://df83niltm34ob"]
+[gd_scene load_steps=6 format=3 uid="uid://df83niltm34ob"]
 
 [ext_resource type="Script" uid="uid://c0kg48svs15wb" path="res://NoMorePlaying.gd" id="1_25iqp"]
+[ext_resource type="FontFile" uid="uid://cmtwgnan4cug" path="res://ModernDOS8x16.ttf" id="2_p518d"]
+[ext_resource type="Script" uid="uid://cailwvj3vbv7p" path="res://skipper.gd" id="3_32ecl"]
 
 [sub_resource type="VideoStreamTheora" id="VideoStreamTheora_88j55"]
 file = "Textures/yesvideo.ogv"
+
+[sub_resource type="Theme" id="Theme_32ecl"]
+default_font = ExtResource("2_p518d")
+default_font_size = 32
 
 [node name="Video" type="Control"]
 layout_mode = 3
@@ -22,4 +28,15 @@ stream = SubResource("VideoStreamTheora_88j55")
 autoplay = true
 script = ExtResource("1_25iqp")
 
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 986.0
+offset_top = 8.0
+offset_right = 1058.0
+offset_bottom = 48.0
+theme = SubResource("Theme_32ecl")
+text = "Skip"
+script = ExtResource("3_32ecl")
+
 [connection signal="finished" from="VideoStreamPlayer" to="VideoStreamPlayer" method="_on_finished"]
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
