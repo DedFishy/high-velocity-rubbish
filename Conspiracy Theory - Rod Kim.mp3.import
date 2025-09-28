@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bbk14hjo32rkw"
+path="res://.godot/imported/Conspiracy Theory - Rod Kim.mp3-66d2b3a9f776f03ba3b8ef7d6cf99a26.mp3str"
+
+[deps]
+
+source_file="res://Conspiracy Theory - Rod Kim.mp3"
+dest_files=["res://.godot/imported/Conspiracy Theory - Rod Kim.mp3-66d2b3a9f776f03ba3b8ef7d6cf99a26.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

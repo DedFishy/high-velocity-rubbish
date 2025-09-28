@@ -48,5 +48,5 @@ void fragment() {
 	vec3 result = cloud_tex_with_light_with_color_with_glow * noise_tex;
 
 	EMISSION = vec3(fresnel_out) * result;
-	ALBEDO = vec3(1,0.5,0);
+	ALBEDO = vec3(0,0,0.5);
 }

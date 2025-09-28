@@ -7,17 +7,17 @@ var caught_props: Array[Node3D]
 
 var nuclear_bombs: Array[Node3D]
 
-const the_amount_of_stuff_spawned_each_time_stuff_is_spawned = 5
+const the_amount_of_stuff_spawned_each_time_stuff_is_spawned = 8
 
-const new_stuff_min_distance = 10
-const new_stuff_max_distance = 25
+const new_stuff_min_distance = 1
+const new_stuff_max_distance = 20
 
 const bomb_min_difference = 25
 const bomb_max_difference = 40
 
-const prop_gravitron_multiplier = 2
+const prop_gravitron_multiplier = 200
 
-const prop_initial_linear_velocity_range = 10
+const prop_initial_linear_velocity_range = 2
 const prop_initial_rotational_velocity_range = 10
 
 func _ready() -> void:
@@ -32,7 +32,7 @@ func _physics_process(delta: float) -> void:
 	if !$Ship.ingame: return
 	for prop in freefloating_props:
 		var vector_towards_ship = $Ship/ShipModel.global_position - prop.position
-		prop.linear_velocity += vector_towards_ship.normalized() * (vector_towards_ship.length()) * delta * prop_gravitron_multiplier
+		prop.linear_velocity += vector_towards_ship.normalized() * 1/(vector_towards_ship.length()) * delta * prop_gravitron_multiplier
 
 func spawn_stuff():
 	for _i in range(0, the_amount_of_stuff_spawned_each_time_stuff_is_spawned):

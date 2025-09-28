@@ -23,10 +23,13 @@ func _ready():
 	camera_pivot = $CameraPivot
 	ship_model = $ShipModel
 	
-	self.linear_velocity.z = 10	
+	self.linear_velocity.z = 10
 
 func _process(delta: float) -> void:
-	if ingame: update_spawning_clock(delta)
+	if ingame: 
+		update_spawning_clock(delta)
+		if not $AudioStreamPlayer.playing:
+			$AudioStreamPlayer.play()
 	
 func _physics_process(delta: float) -> void:
 	update_camera(delta)
@@ -69,6 +72,7 @@ func _on_body_shape_entered(body_rid: RID, body: Node, body_shape_index: int, lo
 	if body.get_meta("IsDaBomb", false):
 		get_parent().flashbang()
 		ingame = false;
+		$AudioStreamPlayer.stop()
 	else:
 		get_parent_node_3d().assimilate_prop(body)
 		
