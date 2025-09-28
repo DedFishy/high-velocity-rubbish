@@ -17,7 +17,7 @@ const bomb_max_difference = 40
 
 const prop_gravitron_multiplier = 200
 
-const bomb_gravitron_multiplier = 150
+const bomb_gravitron_multiplier = 50
 
 
 const prop_initial_linear_velocity_range = 2
@@ -121,7 +121,7 @@ func fire_prop():
 	prop.set_process(true)
 	prop.position = $Ship.global_position + prop_direction*4
 	print(prop_direction)
-	prop.linear_velocity = prop_direction * 100
+	prop.linear_velocity = prop_direction * 150
 	
 	$Ship.apply_impulse(-prop_direction)
 	sync_rubbish_indicator()
